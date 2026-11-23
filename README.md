@@ -1,8 +1,8 @@
 # Encore
 
 A .NET audio engine for games (`Encore.Audio`): a 48 kHz stereo mixer for a table of sound effects, a music
-synthesizer that plays songs from several formats, and the device output a host opens to hear them. .NET 10,
-NativeAOT-compatible.
+synthesizer that plays songs from several formats, and the device output a host opens to hear them. .NET 11,
+NativeAOT-compatible. MIT licensed (see `LICENSE`).
 
 It has no dependency on any game or on ParadiseEngine packages; its one package reference is the SDL3 binding
 `SdlAudioOutput` opens the device with.
@@ -111,7 +111,7 @@ The sound table is a version 1 `encore.sound-table` at 48 kHz: `pools` and `soun
 
 ## Build and test
 
-.NET SDK 10.0.4xx.
+.NET SDK 11.0.100 or a later feature band (`global.json`).
 
 ```sh
 dotnet build Encore.Audio.slnx -c Release
