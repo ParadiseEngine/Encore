@@ -1,11 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <!-- An optional device output for Encore.Audio: SDL3's default playback device renders the mixer. -->
   <PropertyGroup>
+    <PackageId>Encore.Audio.Sdl</PackageId>
+    <Description>SDL3 device output for Encore.Audio: plays the mixer through the default playback device at 48 kHz stereo, on desktop and in the browser.</Description>
+    <PackageTags>audio;sdl;sdl3;output;game-dev</PackageTags>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <IsTrimmable>true</IsTrimmable>
     <IsAotCompatible>true</IsAotCompatible>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="../Encore.Audio/Encore.Audio.csproj" />
     <PackageReference Include="ppy.SDL3-CS" />
+    <None Include="../../README.md" Pack="true" PackagePath="/" Visible="false" />
   </ItemGroup>
 </Project>

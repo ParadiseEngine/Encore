@@ -1,0 +1,96 @@
+name: Publish NuGet packages
+
+# Publishes Encore.Audio (the standalone core) and Encore.Audio.Sdl (the optional SDL3 output) as separate
+# packages at one version: on a tag vX.Y.Z, or by hand with a version.
+#
+# Uses nuget.org trusted publishing (OIDC): no API key is stored. On nuget.org, add a trusted publishing policy
+# for the repository ParadiseEngine/Encore and the workflow publish-nuget.yml. The workflow signs in as the
+# NUGET_USER repository variable, or as the repository owner when it is not set.
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Package version to publish, for example v1.2.3 or 1.2.3-beta.1"
+        required: true
+        type: string
+
+env:
+  DOTNET_NOLOGO: true
+  CONFIGURATION: Release
+  PACKAGE_OUTPUT_DIR: artifacts/nuget
+  NUGET_SOURCE_URL: https://api.nuget.org/v3/index.json
+
+jobs:
+  # The unit tests and the NativeAOT checks on every desktop platform must pass first.
+  test:
+    uses: ./.github/workflows/ci.yml
+
+  publish:
+    needs: test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+
+      - name: Resolve package version
+        shell: bash
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            version="${{ inputs.version }}"
+          else
+            version="${GITHUB_REF_NAME}"
+          fi
+          version="${version#v}"
+          if [[ ! "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+([.-][0-9A-Za-z.-]+)?(\+[0-9A-Za-z.-]+)?$ ]]; then
+            echo "::error::Version must look like v1.2.3 or v1.2.3-beta.1"
+            exit 1
+          fi
+          echo "PACKAGE_VERSION=$version" >> "$GITHUB_ENV"
+
+      - name: Resolve NuGet user
+        id: nuget-user
+        shell: bash
+        run: |
+          user="${{ vars.NUGET_USER || github.repository_owner }}"
+          if [[ -z "$user" ]]; then
+            echo "::error::Set the NUGET_USER repository variable to your nuget.org username."
+            exit 1
+          fi
+          echo "value=$user" >> "$GITHUB_OUTPUT"
+
+      # Packs both packages and checks them before anything is pushed: the core has no dependencies, the SDL
+      # package depends on the core at this version, both carry the README and license, and a consumer of both
+      # restores from the staged packages and builds.
+      - name: Pack and verify the packages
+        run: python3 .github/scripts/pack_packages.py "$PACKAGE_VERSION" "$PACKAGE_OUTPUT_DIR"
+
+      - name: Keep the packages with the run
+        uses: actions/upload-artifact@v4
+        with:
+          name: nuget-packages-${{ env.PACKAGE_VERSION }}
+          path: ${{ env.PACKAGE_OUTPUT_DIR }}
+
+      - name: NuGet login (OIDC -> temporary API key)
+        uses: NuGet/login@v1
+        id: login
+        with:
+          user: ${{ steps.nuget-user.outputs.value }}
+
+      # Pushing each .nupkg also pushes its .snupkg symbol package beside it.
+      - name: Publish to NuGet
+        run: >
+          dotnet nuget push "${{ env.PACKAGE_OUTPUT_DIR }}/*.nupkg"
+          --api-key "${{ steps.login.outputs.NUGET_API_KEY }}"
+          --source "${{ env.NUGET_SOURCE_URL }}"
+          --skip-duplicate

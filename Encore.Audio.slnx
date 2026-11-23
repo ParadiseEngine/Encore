@@ -4,6 +4,7 @@
     <Project Path="src/Encore.Audio.Sdl/Encore.Audio.Sdl.csproj" />
   </Folder>
   <Folder Name="/tests/">
+    <Project Path="tests/Encore.Audio.AotSmoke/Encore.Audio.AotSmoke.csproj" />
     <Project Path="tests/Encore.Audio.Tests/Encore.Audio.Tests.csproj" />
   </Folder>
 </Solution>

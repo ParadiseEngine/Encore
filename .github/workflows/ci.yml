@@ -1,12 +1,14 @@
 name: Tests
 
 # The unit tests need no sound device: the mixer and the music player render into buffers.
-# IsAotCompatible keeps the AOT analyzers on for the library.
+# IsAotCompatible keeps the trim and AOT analyzers on for both libraries; the native-aot job proves it by
+# publishing a NativeAOT executable on each desktop platform and running it (SDL's dummy driver needs no device).
 on:
   push:
     branches: [main]
   pull_request:
   workflow_dispatch:
+  workflow_call:
 
 permissions:
   contents: read
@@ -23,3 +25,25 @@ jobs:
         run: dotnet build Encore.Audio.slnx -c Release
       - name: Unit tests
         run: dotnet test --solution Encore.Audio.slnx -c Release --no-build
+      # The same packing and checks a release runs, at a throwaway version, so a broken package shows up in review.
+      - name: Pack and verify the NuGet packages
+        run: python3 .github/scripts/pack_packages.py 0.0.0-ci artifacts/nuget
+
+  native-aot:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    env:
+      SDL_AUDIO_DRIVER: dummy
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Publish with NativeAOT and run
+        run: python .github/scripts/aot_smoke.py
