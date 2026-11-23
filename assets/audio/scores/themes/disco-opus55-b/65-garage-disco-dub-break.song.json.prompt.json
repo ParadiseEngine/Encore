@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "kind": "converted-song",
+  "assetId": "65-garage-disco-dub-break-song",
+  "group": "disco-opus55-b",
+  "model": "claude/claude-opus-5-5",
+  "userPrompt": "write more BGMs 20 more",
+  "composition": {
+    "title": "Garage Disco Dub Break",
+    "titleZhHant": "車庫迪斯可回聲間奏",
+    "tempoBpm": 114,
+    "meter": "4/4",
+    "key": "Ab major",
+    "barsPerLoop": 32,
+    "harmony": {
+      "A (1-8)": [
+        "Dbmaj9",
+        "Cm9",
+        "Bbm9",
+        "Eb9sus4",
+        "Dbmaj9",
+        "Cm9",
+        "Fm9",
+        "Bbm9 | Eb9sus4"
+      ],
+      "B (9-16)": [
+        "Abmaj9",
+        "C7b9",
+        "Fm9",
+        "Ebm9 | Ab13",
+        "Dbmaj9",
+        "Dbm6",
+        "Cm9 | F7b9",
+        "Bbm9 | Eb9sus4"
+      ],
+      "A' (17-24)": [
+        "Dbmaj9",
+        "Cm9",
+        "Bbm9",
+        "Eb9sus4",
+        "Dbmaj9",
+        "Cm9",
+        "Fm9",
+        "Bbm9 | Eb9sus4"
+      ],
+      "C (25-32)": [
+        "Fm9",
+        "Dbmaj9",
+        "Eb9sus4",
+        "Abmaj9 | Ab9",
+        "Dbmaj9",
+        "Dbm6",
+        "Cm9 | F7b9",
+        "Bbm9 | Eb9sus4"
+      ]
+    },
+    "form": [
+      "A, bars 1-8: the gospel IV-iii-ii-V groove; rootless FM electric-piano chords with pushed syncopation, deep round triangle bass holding roots with octave answers, four-on-the-floor kick, clap on 2 and 4, sixteenth hats and offbeat open hat; the pulse lead sings a short call; clap fill in bar 8.",
+      "B, bars 9-16: a gospel progression (Abmaj9-C7b9-Fm9, Ebm9-Ab13 into Dbmaj9 and the minor-iv Dbm6, Cm9-F7b9 turnaround); phased supersaw strings enter, the piano holds longer chords, the bass pushes harder and the lead answers fuller; clap roll in bar 16.",
+      "A', bars 17-24: the dub breakdown on the A changes: kick and open hat drop out, the bass plays long tones with sparse octave answers, single piano stabs and one clap per bar echo through heavy dotted-eighth delay, lead fragments echo; then the rebuild: kick on one (19-20), on one and three (21-22), full from 23, the A groove back from 21 and a clap roll in 24.",
+      "C, bars 25-32: the full groove returns on new changes (Fm9-Dbmaj9-Eb9sus4-Abmaj9/Ab9, Dbmaj9-Dbm6, Cm9 F7b9, Bbm9 Eb9sus4) with strings, the busiest piano and the lead hook at its peak (c6-db6-eb6); clap roll and Eb9sus4 turnaround into bar 1."
+    ],
+    "motif": "A gospel call: a two-eighth pickup ab4-c5 rising to a held eb5 and a reach to f5, answered by a falling eb5-c5-bb4 sigh; the break chops it into echoing fragments, and C lifts it to the high ninth and eleventh.",
+    "intent": "New York garage disco idioms: deep, warm, round bass (FM-tinged triangle) holding roots with octave answers; gospel-ish rootless electric-piano voicings (major and minor ninths, suspended ninths, minor-iv Dbm6, altered dominants) in pushed syncopation; four-on-the-floor kick with clap on 2 and 4, sixteenth hats and an offbeat open hat; a dub-style breakdown where kick, open hat and most layers drop out while delay echoes the piano stabs, claps and lead fragments, then a step-by-step rebuild; phased supersaw strings only in B and C; a soulful pulse lead with vibrato. Soulful and spacious at library level.",
+    "voices": [
+      "kick",
+      "snare",
+      "hats",
+      "bass",
+      "keys",
+      "pad",
+      "melody"
+    ],
+    "externalSamples": false
+  },
+  "library": {
+    "genreId": "garage-disco",
+    "genre": "Garage disco",
+    "mood": "soulful, spacious, warm",
+    "suggestedUses": [
+      "late-night base hangout",
+      "calm workshop loop",
+      "returning home after an expedition"
+    ]
+  },
+  "source": {
+    "repository": "quabug/encore",
+    "path": "assets/audio/scores/themes/disco-opus55-b/65-garage-disco-dub-break.score.json",
+    "sha256": "c9f1f70eb88f1807aca72111133a3e08dabb4d973501f35c411c988bc9c8635f",
+    "note": "The composition is ENCORE's; its notes, parts, velocities and loop length are kept exactly."
+  },
+  "conversion": {
+    "note": "Converted once from the source into encore.song, keeping every note, part, velocity and the loop length; the instruments are this engine's own patches."
+  },
+  "sha256": "fc2b83dc1daeb175db191672b0c01b7fe0e8bf56e42347e8e6cb3269b22e9d64",
+  "sizeBytes": 56812,
+  "song": {
+    "bpm": 114,
+    "beats": 128,
+    "durationSeconds": 67.36842105263158,
+    "instruments": 15,
+    "notes": 1831
+  }
+}

@@ -1,0 +1,3 @@
+<Project>
+  <!-- Stop discovery here: a parent workspace's targets must not apply when this repository is checked out inside another. -->
+</Project>

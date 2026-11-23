@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "kind": "converted-song",
+  "assetId": "81-fusion-crosswind-modal-song",
+  "group": "funk-opus55-c",
+  "model": "claude/claude-opus-5-5",
+  "userPrompt": "write more BGMs 20 more",
+  "composition": {
+    "title": "Crosswind Modal",
+    "titleZhHant": "側風調式",
+    "tempoBpm": 104,
+    "meter": "4/4",
+    "key": "D lydian, with A mixolydian and B aeolian colours",
+    "barsPerLoop": 32,
+    "harmony": {
+      "A (1-8)": [
+        "Dmaj9#11",
+        "E/D",
+        "Bm11",
+        "Cmaj9#11",
+        "Dmaj9#11",
+        "E/D",
+        "Gmaj9#11",
+        "A7sus4 | A13 (ensemble hits)"
+      ],
+      "B (9-16)": [
+        "A9",
+        "Cmaj9",
+        "A9",
+        "Fmaj9#11",
+        "Bbmaj9",
+        "Gm9",
+        "Ebmaj9#11",
+        "A7sus4 (ensemble hits)"
+      ],
+      "A' (17-24)": [
+        "Dmaj9#11",
+        "E/D",
+        "Bm11",
+        "Cmaj9#11",
+        "Dmaj9#11",
+        "E/D",
+        "Gmaj9#11",
+        "A7sus4 | A13 (ensemble hits)"
+      ],
+      "C (25-32)": [
+        "Bm9",
+        "Gmaj9#11",
+        "Em11",
+        "F#7alt",
+        "Bm9",
+        "Gmaj9#11",
+        "Cmaj9#11",
+        "A13sus4"
+      ]
+    },
+    "form": [
+      "A, bars 1-8: D lydian (Dmaj9#11 alternating with E/D) with Bm11 and Cmaj9#11; kick, electric piano, bass and ride accents grouped 5+5+6 so the bar feels like quintuple phrases inside 4/4 while the snare keeps the backbeat; the scooping lead sings long tones; ensemble hits on 1, a2, 2+, 3, 3a, 4e with a tom answer in bar 8.",
+      "B, bars 9-16: A mixolydian with chromatic-mediant shifts (A9 | Cmaj9 | A9 | Fmaj9#11 | Bbmaj9 | Gm9 | Ebmaj9#11); everything regroups as 3+3+2 hemiola, the lead plays dotted-eighth arches, the supersaw pad moves in half notes against it; A7sus4 ensemble hits and a tom run.",
+      "A', bars 17-24: the lydian A changes again with the lead varied and soaring to F#6, G#6 and A6 in bars 20-23; the same ensemble-hit bar 24.",
+      "C, bars 25-32: B aeolian/D major chain Bm9 | Gmaj9#11 | Em11 | F#7alt twice (Cmaj9#11, A13sus4 on the second pass) grouped 3+3+4+3+3, with lead, bass and piano all landing on the group starts, and a full tom roll into bar 1."
+    ],
+    "motif": "An A-D pickup to a long F#, then the lydian G# leaning up to A (the raised fourth resolving to the fifth); every lead note scoops up one and a half semitones like a portamento synth; B recasts it as 3+3+2 hemiola arches, C as 3+3+4+3+3 phrases.",
+    "intent": "Lyrical late-70s jazz fusion rather than overdriven: straight sixteenths with odd accent groupings inside 4/4 (5+5+6 in A, 3+3+2 hemiola in B, 3+3+4+3+3 in C) spelled by the kick, the ride accents, the electric-piano comping and the bass, while a light backbeat snare with ghosts keeps the 4/4 underneath; ensemble hits with tom answers at phrase ends; a soft sawtooth lead with a negative pitch envelope (portamento-like scoops), vibrato and delay; FM electric piano rootless lydian voicings (maj9#11, E/D slash, m11, 7alt, 13sus4); a slow phased supersaw pad counterline in half notes; a round fretless-like triangle bass with a small scoop. Lydian and mixolydian colour with chromatic-mediant moves. Distinct from 61 (120 BPM E dorian overdriven head and slash-chord planing): slower, lyrical, D lydian, no distortion, different groupings and a pad counterline.",
+    "voices": [
+      "kick",
+      "snare",
+      "hats",
+      "bass",
+      "keys",
+      "pad",
+      "melody"
+    ],
+    "externalSamples": false
+  },
+  "library": {
+    "genreId": "jazz-fusion",
+    "genre": "Jazz fusion",
+    "mood": "soaring, intricate, open-skied",
+    "suggestedUses": [
+      "wide open outdoor traversal",
+      "dawn over the dance hall",
+      "map or planning screen"
+    ]
+  },
+  "source": {
+    "repository": "quabug/encore",
+    "path": "assets/audio/scores/themes/funk-opus55-c/81-fusion-crosswind-modal.score.json",
+    "sha256": "a76697f97645ac509b25683ce953a253d4a7156db49de7257924fdb271d7d937",
+    "note": "The composition is ENCORE's; its notes, parts, velocities and loop length are kept exactly."
+  },
+  "conversion": {
+    "note": "Converted once from the source into encore.song, keeping every note, part, velocity and the loop length; the instruments are this engine's own patches."
+  },
+  "sha256": "f3d208674386231f3203279920145483f85343bd499e2615658fa3e88b9da3c5",
+  "sizeBytes": 54146,
+  "song": {
+    "bpm": 104,
+    "beats": 128,
+    "durationSeconds": 73.84615384615384,
+    "instruments": 15,
+    "notes": 1718
+  }
+}

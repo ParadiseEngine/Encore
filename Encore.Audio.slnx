@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Encore.Audio/Encore.Audio.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Encore.Audio.Tests/Encore.Audio.Tests.csproj" />
+  </Folder>
+</Solution>

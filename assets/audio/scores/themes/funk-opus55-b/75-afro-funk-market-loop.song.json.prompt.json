@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "kind": "converted-song",
+  "assetId": "75-afro-funk-market-loop-song",
+  "group": "funk-opus55-b",
+  "model": "claude/claude-opus-5-5",
+  "userPrompt": "write more BGMs 20 more",
+  "composition": {
+    "title": "Market Loop",
+    "titleZhHant": "市集迴圈",
+    "tempoBpm": 110,
+    "meter": "4/4",
+    "key": "Bb dorian, modal shift to Bb mixolydian in C",
+    "barsPerLoop": 32,
+    "harmony": {
+      "A (1-8)": [
+        "Bbm11 | Bbm11 | Ab | Ab, twice (quartal organ Eb-Ab-Db / Eb-Ab-C)"
+      ],
+      "B (9-16)": [
+        "Bbm11 | Bbm11 | Ab | Ab, twice"
+      ],
+      "A' (17-24)": [
+        "Bbm11 | Bbm11 | Ab | Ab, twice"
+      ],
+      "C (25-32)": [
+        "Bb7 (mixolydian, D natural)",
+        "Bb7",
+        "Ab",
+        "Ab",
+        "Bb7",
+        "Bb7",
+        "Ab",
+        "Ab, chromatic A pickup into Bbm11"
+      ]
+    },
+    "form": [
+      "A, bars 1-8: long open vamp - two band-passed pulse guitar riffs interlock note-for-gap (left on the downbeat side, right in the gaps), shekere sixteenths with the scrape on every and, a seven-stroke iron bell pattern, the bass ostinato and quartal organ chops; the horns enter at bar 5 with a short F-Ab-Bb call in parallel fourths; snare fill in bar 8.",
+      "B, bars 9-16: the guitars switch to a second interlock, the bass jumps octaves, the organ holds breathing chords, and the horns state the theme in parallel fourths: Bb-Ab-F rising to Db6, answered down to Eb, then a second phrase reaching Eb6.",
+      "A', bars 17-24: the first interlock returns with an upper-neighbour (Eb-Db) variation in bars 21-22, organ chops busier, horns only answer at phrase ends (bars 18, 20, 22, 24).",
+      "C, bars 25-32: modal shift to Bb mixolydian - Bb7 | Bb7 | Ab | Ab twice, D natural in guitar 1, guitar 2, organ and the horn line, horns now in octaves; a snare fill and chromatic A in bass and horns lead back to Bbm11."
+    ],
+    "motif": "A horn theme that hammers Bb, steps down to Ab-F and springs back up to Db6, voiced in parallel fourths (second horn a perfect fourth below), later in octaves.",
+    "intent": "Afro-funk: interlocking repeating guitar-like riffs (two short band-passed pulse figures exactly offset, panned left and right), shekere-like soft-attack noise sixteenths with accented ands, a constant iron-bell pattern, a propulsive square bass ostinato, kick on one, and of two and and of three (not four on the floor), a light snare with ghost strokes and rolling fills, square organ chords in quartal voicings with tremolo, and a horn section melody in parallel fourths (A-A') and octaves (C). A long open minor vamp in Bb dorian that shifts mode to Bb mixolydian in C. Hypnotic, polyrhythmic and sunny, straight sixteenths.",
+    "voices": [
+      "kick",
+      "snare",
+      "hats",
+      "bass",
+      "keys",
+      "melody"
+    ],
+    "externalSamples": false
+  },
+  "library": {
+    "genreId": "afro-funk",
+    "genre": "Afro-funk",
+    "mood": "hypnotic, sunny, polyrhythmic",
+    "suggestedUses": [
+      "trading and crafting in the base",
+      "long gathering sessions",
+      "daylight expedition prep"
+    ]
+  },
+  "source": {
+    "repository": "quabug/encore",
+    "path": "assets/audio/scores/themes/funk-opus55-b/75-afro-funk-market-loop.score.json",
+    "sha256": "dda400306dd494844f1e0c2ec6e773e28b2e00199c1f6283194a3ba8772f7296",
+    "note": "The composition is ENCORE's; its notes, parts, velocities and loop length are kept exactly."
+  },
+  "conversion": {
+    "note": "Converted once from the source into encore.song, keeping every note, part, velocity and the loop length; the instruments are this engine's own patches."
+  },
+  "sha256": "5ba8a132243c5e8c7b3c782ad87c2fe1cf238afc38f88724ebf792602a87b5a6",
+  "sizeBytes": 73953,
+  "song": {
+    "bpm": 110,
+    "beats": 128,
+    "durationSeconds": 69.81818181818181,
+    "instruments": 10,
+    "notes": 2462
+  }
+}

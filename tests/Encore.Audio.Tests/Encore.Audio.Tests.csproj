@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    Unit tests that need no sound device: the mixer over a sound table written for the test, the music
+    synthesizer, and the song formats from in-memory documents. TUnit on Microsoft.Testing.Platform.
+  -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <!-- Microsoft.Testing.Platform ships resource locales the .NET 10 SDK does not recognise. -->
+    <NoWarn>$(NoWarn);NETSDK1188</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="TUnit" />
+    <ProjectReference Include="../../src/Encore.Audio/Encore.Audio.csproj" />
+  </ItemGroup>
+</Project>

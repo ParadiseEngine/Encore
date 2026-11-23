@@ -1,0 +1,64 @@
+{
+  "format": "encore.song",
+  "version": 1,
+  "title": "First light (an example of the encore.song format)",
+  "bpm": 112,
+  "length": 8,
+  "seed": 7,
+  "effects": [
+    {"reverbSeconds": 1.8, "reverbSize": 0.6, "delayBeats": 0.75, "delayFeedback": 0.35}
+  ],
+  "instruments": [
+    {
+      "name": "kick", "part": "kick", "wave": "sine", "gain": 0.7, "defaultPitch": 33,
+      "envelope": {"attack": 0.001, "decay": 0.3, "sustain": 0, "release": 0.05},
+      "modulations": [{"target": "pitch", "amount": 24, "envelope": {"attack": 0, "decay": 0.04, "sustain": 0, "release": 0}}]
+    },
+    {
+      "name": "hat", "part": "hats", "wave": "white", "gain": 0.12, "pan": 0.3,
+      "envelope": {"attack": 0.001, "decay": 0.05, "sustain": 0, "release": 0.02},
+      "filters": [{"mode": "highpass", "cutoff": 7000}]
+    },
+    {
+      "name": "snare", "part": "snare", "wave": "triangle", "defaultPitch": 50, "noise": 0.7, "gain": 0.35,
+      "envelope": {"attack": 0.001, "decay": 0.18, "sustain": 0, "release": 0.05},
+      "modulations": [{"target": "pitch", "amount": 7, "envelope": {"attack": 0, "decay": 0.03, "sustain": 0, "release": 0}}],
+      "sends": {"bus": 0, "reverb": 0.2}
+    },
+    {
+      "name": "bass", "part": "bass", "wave": "sawtooth", "gain": 0.3,
+      "envelope": {"attack": 0.003, "decay": 0.25, "sustain": 0.5, "release": 0.06},
+      "filters": [{"mode": "lowpass", "cutoff": 320, "resonance": 1.4}],
+      "modulations": [{"target": "cutoff", "filter": 0, "amount": 2, "envelope": {"attack": 0.002, "decay": 0.15, "sustain": 0, "release": 0.1}}]
+    },
+    {
+      "name": "keys", "part": "keys", "wave": "sine", "gain": 0.18, "pan": -0.3,
+      "fm": {"ratio": 2, "index": 0},
+      "envelope": {"attack": 0.003, "decay": 0.6, "sustain": 0.25, "release": 0.3},
+      "modulations": [{"target": "fmIndex", "amount": 1.2, "envelope": {"attack": 0.001, "decay": 0.4, "sustain": 0.2, "release": 0.2}}],
+      "sends": {"bus": 0, "reverb": 0.3, "delay": 0.2}
+    },
+    {
+      "name": "pad", "part": "pad", "wave": "sawtooth", "gain": 0.06,
+      "unison": {"voices": 5, "detune": 0.2, "spread": 0.7},
+      "envelope": {"attack": 0.6, "decay": 0.5, "sustain": 0.8, "release": 0.8},
+      "filters": [{"mode": "lowpass", "cutoff": 1800}],
+      "phaser": {"rate": 0.25, "depth": 0.5, "center": 1000, "sweep": 700},
+      "modulations": [{"target": "cutoff", "filter": 0, "amount": 0.5, "lfo": {"rate": 0.2, "shape": "triangle"}}],
+      "sends": {"bus": 0, "reverb": 0.4}
+    }
+  ],
+  "notes": [
+    [0, 0.25, 0], [2, 0.25, 0], [4, 0.25, 0], [6, 0.25, 0], [6.5, 0.25, 0, null, 0.7],
+    [0.5, 0.25, 1, null, 0.8], [1.5, 0.25, 1, null, 0.6], [2.5, 0.25, 1, null, 0.8], [3.5, 0.25, 1, null, 0.6],
+    [4.5, 0.25, 1, null, 0.8], [5.5, 0.25, 1, null, 0.6], [6.5, 0.25, 1, null, 0.8], [7.5, 0.25, 1, null, 0.6],
+    [1, 0.25, 2], [3, 0.25, 2], [5, 0.25, 2], [7, 0.25, 2, null, 0.9],
+    [0, 0.75, 3, 33], [1.5, 0.5, 3, 33, 0.8], [2, 0.75, 3, 36], [3.5, 0.5, 3, 40, 0.8],
+    [4, 0.75, 3, 41], [5.5, 0.5, 3, 41, 0.8], [6, 0.75, 3, 43], [7.5, 0.5, 3, 40, 0.8],
+    [0, 1, 4, 57], [0, 1, 4, 60], [0, 1, 4, 64],
+    [2, 1, 4, 60], [2, 1, 4, 64], [2, 1, 4, 67],
+    [4, 1, 4, 53], [4, 1, 4, 57], [4, 1, 4, 60],
+    [6, 1, 4, 55], [6, 1, 4, 59], [6, 1, 4, 62],
+    [0, 4, 5, 57], [0, 4, 5, 64], [4, 4, 5, 53], [4, 4, 5, 60]
+  ]
+}
