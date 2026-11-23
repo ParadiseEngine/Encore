@@ -2,10 +2,10 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using SDL;
 
-namespace Encore.Audio;
+namespace Encore.Audio.Sdl;
 
 /// <summary>
-/// The game's sound device, which each host opens and owns: SDL3's default playback device at 48 kHz
+/// A sound device for <see cref="AudioMixer"/>, which each host opens and owns: SDL3's default playback device at 48 kHz
 /// stereo float, whose audio callback renders the <see cref="AudioMixer"/>. Only that callback
 /// advances the mix. On the native host SDL calls it on its own thread, so it keeps playing while the
 /// render thread is busy and the music goes on through a level's loading. In a browser it plays at the
