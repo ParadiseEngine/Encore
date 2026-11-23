@@ -7,8 +7,6 @@
     <OutputType>Exe</OutputType>
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
-    <!-- Microsoft.Testing.Platform ships resource locales the .NET 10 SDK does not recognise. -->
-    <NoWarn>$(NoWarn);NETSDK1188</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="TUnit" />
