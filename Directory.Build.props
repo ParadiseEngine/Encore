@@ -7,6 +7,22 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <Deterministic>true</Deterministic>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+
+  <!-- Shared NuGet package metadata. Each packable project adds its PackageId, Description and PackageTags;
+       tests opt out with IsPackable=false. Releases set the version from their tag (-p:Version); a local pack
+       gets this development version, so it never shadows a published one. -->
+  <PropertyGroup>
+    <Version>0.1.0-dev</Version>
+    <Authors>ParadiseEngine</Authors>
+    <Company>ParadiseEngine</Company>
+    <Copyright>Copyright (c) 2026 ParadiseEngine</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/ParadiseEngine/Encore</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/ParadiseEngine/Encore</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 </Project>

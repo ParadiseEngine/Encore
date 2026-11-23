@@ -4,12 +4,17 @@ A .NET audio engine for games (`Encore.Audio`): a 48 kHz stereo mixer for a tabl
 synthesizer that plays songs from several formats, and the device output a host opens to hear them. .NET 11,
 NativeAOT-compatible. MIT licensed (see `LICENSE`).
 
-Two packages:
+Two NuGet packages:
 
-- **`Encore.Audio`**, the engine. It depends on nothing but .NET itself: no packages, no native libraries, no
-  unsafe code. It never opens a device; the host pulls samples from `AudioMixer.Render`.
-- **`Encore.Audio.Sdl`**, optional: `SdlAudioOutput` plays the mixer through SDL3's default playback device.
-  It is the only part that references a package (the SDL3 binding).
+| Package | What it is |
+|---|---|
+| [Encore.Audio](https://www.nuget.org/packages/Encore.Audio) | The engine. It depends on nothing but .NET itself: no packages, no native libraries, no unsafe code. It never opens a device; the host pulls samples from `AudioMixer.Render`. |
+| [Encore.Audio.Sdl](https://www.nuget.org/packages/Encore.Audio.Sdl) | Optional: `SdlAudioOutput` plays the mixer through SDL3's default playback device. The only package with a dependency (the SDL3 binding). |
+
+```sh
+dotnet add package Encore.Audio
+dotnet add package Encore.Audio.Sdl   # only for the SDL3 device output
+```
 
 ## What is here
 
@@ -21,6 +26,7 @@ Two packages:
 | `src/Encore.Audio.Sdl/` | The optional device output: `SdlAudioOutput`, SDL3's default playback device at 48 kHz stereo float, whose callback renders the mixer. |
 | `src/Encore.Audio/AudioCues.cs` | An `IAudioEngine` wrapper that writes down every event and music change with its time, for checking a mix offline. |
 | `src/Encore.Audio/AudioEvents.cs` | The `Play_X` / `Stop_X` / `Pause_X` / `Resume_X` naming of the table's events. |
+| `tests/Encore.Audio.AotSmoke/` | The NativeAOT smoke test: a native executable that exercises both packages (see NativeAOT below). |
 | `tests/Encore.Audio.Tests/` | Unit tests (TUnit) of the mixer, the synthesizer, the player and the formats, and a check that the core stays free of dependencies; no sound device needed. |
 | `assets/audio/scores/` | Three of ENCORE's themes as `encore.song` files with their provenance sidecars, and `examples/first-light.song.json`, a short example written by hand. |
 
@@ -124,4 +130,26 @@ The sound table is a version 1 `encore.sound-table` at 48 kHz: `pools` and `soun
 ```sh
 dotnet build Encore.Audio.slnx -c Release
 dotnet test --solution Encore.Audio.slnx -c Release
+python3 .github/scripts/pack_packages.py 0.0.0-local artifacts/nuget   # pack both packages and check them
+SDL_AUDIO_DRIVER=dummy python3 .github/scripts/aot_smoke.py            # publish with NativeAOT and run it
 ```
+
+### NativeAOT
+
+Both libraries are NativeAOT- and trim-compatible (`IsAotCompatible`, `IsTrimmable`): no reflection, no
+runtime code generation, JSON read with `Utf8JsonReader`/`JsonDocument`. The analyzers run on every build, and
+warnings are errors. `tests/Encore.Audio.AotSmoke` goes further. CI publishes it with `PublishAot` on Linux,
+Windows and macOS, fails on any trim or AOT warning, and runs the native executable. That run loads a song and
+a MIDI file, renders music, runs the mixer over a sound table, and lets SDL's native callback pull the mixer
+through the dummy audio driver.
+
+## Releasing
+
+Push a tag `vX.Y.Z` (or `vX.Y.Z-beta.1`), or run the **Publish NuGet packages** workflow by hand with a version.
+It runs the tests, packs `Encore.Audio` and `Encore.Audio.Sdl` at that version, checks them (the core has no
+dependencies, the SDL package depends on the core at the same version, a consumer of both builds), and pushes both
+to nuget.org with their symbol packages.
+
+Publishing uses nuget.org trusted publishing, with no API key stored in the repository: on nuget.org, add a trusted
+publishing policy for the repository `ParadiseEngine/Encore` and the workflow `publish-nuget.yml`. The workflow signs
+in as the `NUGET_USER` repository variable, or as the repository owner when it is not set.

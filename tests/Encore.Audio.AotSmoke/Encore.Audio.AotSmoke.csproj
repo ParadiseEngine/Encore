@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    Proves both packages work under NativeAOT: .github/scripts/aot_smoke.py publishes this with PublishAot, fails on
+    any trim or AOT warning, and runs the native executable. A plain build compiles it with the AOT analyzers on.
+  -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <IsPackable>false</IsPackable>
+    <PublishAot>true</PublishAot>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <!-- Report each trim/AOT warning on its own rather than one per assembly, so a failure names its cause. -->
+    <TrimmerSingleWarn>false</TrimmerSingleWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../src/Encore.Audio/Encore.Audio.csproj" />
+    <ProjectReference Include="../../src/Encore.Audio.Sdl/Encore.Audio.Sdl.csproj" />
+  </ItemGroup>
+</Project>
