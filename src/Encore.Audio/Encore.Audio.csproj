@@ -5,7 +5,7 @@
     through Encore.Audio.Sdl.
   -->
   <PropertyGroup>
-    <PackageId>Encore.Audio</PackageId>
+    <PackageId>Paradise.Encore</PackageId>
     <Description>A dependency-free .NET audio engine for games: a 48 kHz stereo mixer for a table of positioned sound effects, and a music synthesizer that plays encore.song and Standard MIDI files with arrangeable parts. NativeAOT-compatible; no native libraries.</Description>
     <PackageTags>audio;mixer;synthesizer;music;midi;game-dev;nativeaot</PackageTags>
     <IsTrimmable>true</IsTrimmable>

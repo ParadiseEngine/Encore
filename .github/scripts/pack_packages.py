@@ -6,8 +6,8 @@ Usage: pack_packages.py <version> <output-directory>     (DOTNET names the dotne
 Checks:
 - every packable project under src/ produced exactly one package, and has a row in README.md;
 - every package carries the README and the MIT license expression;
-- Encore.Audio, the core, declares no dependencies at all: it stays standalone;
-- Encore.Audio.Sdl depends on Encore.Audio at exactly this version and on ppy.SDL3-CS;
+- Paradise.Encore, the core, declares no dependencies at all: it stays standalone;
+- Paradise.Encore.Sdl depends on Paradise.Encore at exactly this version and on ppy.SDL3-CS;
 - a throwaway consumer of every package at this version restores and builds, with the packages resolvable
   only from the staging directory (and their own dependencies from nuget.org).
 """
@@ -27,6 +27,7 @@ from xml.sax.saxutils import quoteattr
 
 DOTNET = os.environ.get("DOTNET", "dotnet")
 ROOT = Path(__file__).resolve().parents[2]
+CORE, SDL = "Paradise.Encore", "Paradise.Encore.Sdl"  # package ids; the assemblies stay Encore.Audio and Encore.Audio.Sdl
 
 
 def run(*args: str, cwd: Path = ROOT) -> str:
@@ -161,14 +162,16 @@ def main() -> None:
         if not any(f.startswith("lib/net11.0/") and f.endswith(".dll") for f in files):
             fail(f"{package_id} has no lib/net11.0 assembly")
 
-    core = dependencies(packages["Encore.Audio"])
+    if set(packages) != {CORE, SDL}:
+        fail(f"Expected the packages {CORE} and {SDL}, found {sorted(packages)}")
+    core = dependencies(packages[CORE])
     if core:
-        fail(f"Encore.Audio must stay standalone but depends on {core}")
-    sdl = dependencies(packages["Encore.Audio.Sdl"])
-    if sdl.get("Encore.Audio") not in (version, f"[{version}]", f"[{version}, )"):
-        fail(f"Encore.Audio.Sdl must depend on Encore.Audio {version}, not {sdl.get('Encore.Audio')}")
-    if "ppy.SDL3-CS" not in sdl or set(sdl) != {"Encore.Audio", "ppy.SDL3-CS"}:
-        fail(f"Encore.Audio.Sdl must depend on Encore.Audio and ppy.SDL3-CS only, not {sdl}")
+        fail(f"{CORE} must stay standalone but depends on {core}")
+    sdl = dependencies(packages[SDL])
+    if sdl.get(CORE) not in (version, f"[{version}]", f"[{version}, )"):
+        fail(f"{SDL} must depend on {CORE} {version}, not {sdl.get(CORE)}")
+    if set(sdl) != {CORE, "ppy.SDL3-CS"}:
+        fail(f"{SDL} must depend on {CORE} and ppy.SDL3-CS only, not {sdl}")
     for package_id, metadata in packages.items():
         print(f"{package_id} {version}: dependencies {dependencies(metadata) or 'none'}")
 
