@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- An optional device output for Encore.Audio: SDL3's default playback device renders the mixer. -->
+  <PropertyGroup>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <IsAotCompatible>true</IsAotCompatible>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Encore.Audio/Encore.Audio.csproj" />
+    <PackageReference Include="ppy.SDL3-CS" />
+  </ItemGroup>
+</Project>

@@ -1,7 +1,7 @@
 <Project>
   <ItemGroup>
-    <!-- The SDL3 binding SdlAudioOutput calls. A host that also opens its window through
-         Paradise.Windowing.Sdl must keep this equal to the version that package depends on. -->
+    <!-- The SDL3 binding Encore.Audio.Sdl calls (the core library references no packages). A host that also
+         opens its window through Paradise.Windowing.Sdl must keep this equal to the version that package depends on. -->
     <PackageVersion Include="ppy.SDL3-CS" Version="2026.1002.1" />
     <PackageVersion Include="TUnit" Version="1.57.0" />
   </ItemGroup>

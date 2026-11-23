@@ -4,8 +4,12 @@ A .NET audio engine for games (`Encore.Audio`): a 48 kHz stereo mixer for a tabl
 synthesizer that plays songs from several formats, and the device output a host opens to hear them. .NET 11,
 NativeAOT-compatible. MIT licensed (see `LICENSE`).
 
-It has no dependency on any game or on ParadiseEngine packages; its one package reference is the SDL3 binding
-`SdlAudioOutput` opens the device with.
+Two packages:
+
+- **`Encore.Audio`**, the engine. It depends on nothing but .NET itself: no packages, no native libraries, no
+  unsafe code. It never opens a device; the host pulls samples from `AudioMixer.Render`.
+- **`Encore.Audio.Sdl`**, optional: `SdlAudioOutput` plays the mixer through SDL3's default playback device.
+  It is the only part that references a package (the SDL3 binding).
 
 ## What is here
 
@@ -14,10 +18,10 @@ It has no dependency on any game or on ParadiseEngine packages; its one package 
 | `src/Encore.Audio/IAudioEngine.cs` | The commands a host posts: emitters that follow a pose, a listener, events on an emitter or at a point, the music, `Commit` once a frame. `AudioPose`. |
 | `src/Encore.Audio/Mixer/` | `SoundBank` (loads the sound table `events.json` and the WAV masters it lists), `AudioMixer` (voice pool, effects/ambience/music buses, distance fade and pan from the listener, shared voice pools, music crossfade and arrangement, a −1 dBFS limiter), `MixerEngine` (the `IAudioEngine` over the mixer: variations, detune, loops, song loading), `WavFile`/`WavWriter`. |
 | `src/Encore.Audio/Music/` | The music: `Song` (instruments, notes in seconds, effect buses), `MusicPlayer` (plays a song, loops it, arranges its parts), the synthesizer under `Synth/`, and the formats under `Formats/`. |
-| `src/Encore.Audio/SdlAudioOutput.cs` | SDL3's default playback device at 48 kHz stereo float; its callback renders the mixer. |
+| `src/Encore.Audio.Sdl/` | The optional device output: `SdlAudioOutput`, SDL3's default playback device at 48 kHz stereo float, whose callback renders the mixer. |
 | `src/Encore.Audio/AudioCues.cs` | An `IAudioEngine` wrapper that writes down every event and music change with its time, for checking a mix offline. |
 | `src/Encore.Audio/AudioEvents.cs` | The `Play_X` / `Stop_X` / `Pause_X` / `Resume_X` naming of the table's events. |
-| `tests/Encore.Audio.Tests/` | Unit tests (TUnit) of the mixer, the synthesizer, the player and the formats; no sound device needed. |
+| `tests/Encore.Audio.Tests/` | Unit tests (TUnit) of the mixer, the synthesizer, the player and the formats, and a check that the core stays free of dependencies; no sound device needed. |
 | `assets/audio/scores/` | Three of ENCORE's themes as `encore.song` files with their provenance sidecars, and `examples/first-light.song.json`, a short example written by hand. |
 
 ## Music
@@ -81,6 +85,7 @@ Each instrument names its part (`ScorePart`: kick, snare, hats, bass, keys, pad,
 ```csharp
 using System.Numerics;
 using Encore.Audio;
+using Encore.Audio.Sdl;                          // only with the optional SDL output
 
 var bank = SoundBank.Load(effectsDirectory);     // events.json and the masters it lists
 var mixer = new AudioMixer(bank);
@@ -99,8 +104,11 @@ engine.Commit();
 ```
 
 A music name is a path under the scores directory without its ending; `MixerEngine.ScoreFile` takes the
-first of `.song.json`, `.mid` and `.midi` that exists. Without a device, call
-`mixer.Render(buffer)` yourself (interleaved stereo floats) and write the result with `WavWriter`. A song
+first of `.song.json`, `.mid` and `.midi` that exists.
+
+Without `Encore.Audio.Sdl`, play through any device by calling `mixer.Render(buffer)` from its callback
+(interleaved stereo floats at 48 kHz; only that call advances the mix, on whichever thread the device uses), or
+render offline and write the result with `WavWriter`. A song
 alone plays through `MusicPlayer` (`Play`, `Render`, `Pause`, `Resume`, `Stop`, `Arrange`).
 
 The sound table is a version 1 `encore.sound-table` at 48 kHz: `pools` and `sounds` (each with its

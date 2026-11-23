@@ -1,13 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <!-- The audio player: the sound-table mixer, the music synthesizer with its song formats, and the SDL3 output a host opens. -->
+  <!--
+    The engine: the sound-table mixer and the music synthesizer with its song formats. It depends on nothing but
+    .NET itself; a host plays it through any device by calling AudioMixer.Render from the device's callback, or
+    through Encore.Audio.Sdl.
+  -->
   <PropertyGroup>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <IsAotCompatible>true</IsAotCompatible>
   </PropertyGroup>
   <ItemGroup>
     <InternalsVisibleTo Include="Encore.Audio.Tests" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="ppy.SDL3-CS" />
   </ItemGroup>
 </Project>
