@@ -87,7 +87,7 @@ jobs:
         with:
           user: ${{ steps.nuget-user.outputs.value }}
 
-      # Each package is pushed on its own, so nuget.org's reason for refusing one is printed in full. A refused push
+      # Each package is pushed on its own, and nuget.org's reason for refusing one is printed. A refused push
       # (a version that already exists included) fails the release rather than passing with nothing published.
       # Pushing a .nupkg also pushes its .snupkg symbol package beside it.
       - name: Publish to NuGet
@@ -98,7 +98,7 @@ jobs:
           status=0
           for package in "$PACKAGE_OUTPUT_DIR"/*.nupkg; do
             echo "::group::$(basename "$package")"
-            if ! dotnet nuget push "$package" --api-key "$NUGET_API_KEY" --source "$NUGET_SOURCE_URL" --verbosity detailed; then
+            if ! dotnet nuget push "$package" --api-key "$NUGET_API_KEY" --source "$NUGET_SOURCE_URL"; then
               echo "::error::nuget.org refused $(basename "$package")"
               status=1
             fi
