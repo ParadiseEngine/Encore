@@ -29,8 +29,13 @@ dotnet add package Paradise.Encore.Sdl   # only for the SDL3 device output
 | `tests/Encore.Audio.AotSmoke/` | The NativeAOT smoke test: a native executable that exercises both packages (see NativeAOT below). |
 | `tests/Encore.Audio.Tests/` | Unit tests (TUnit) of the mixer, the synthesizer, the player and the formats, and a check that the core stays free of dependencies; no sound device needed. |
 | `assets/audio/scores/` | Three of ENCORE's themes as `encore.song` files with their provenance sidecars, and `examples/first-light.song.json`, a short example written by hand. |
+| `docs/audio/` | A rendered sample of one of the themes, linked from Music below. |
 
 ## Music
+
+**[▶ Listen: Afro-Funk Market Loop](docs/audio/afro-funk-market-loop.mp3)**: the first 24 seconds of
+`assets/audio/scores/themes/funk-opus55-b/75-afro-funk-market-loop.song.json`, rendered offline by
+`MusicPlayer` (with a two-second fade-out added) and encoded as a 128 kbit/s MP3.
 
 ### The synthesizer
 
