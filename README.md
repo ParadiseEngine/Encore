@@ -8,12 +8,12 @@ Two NuGet packages:
 
 | Package | What it is |
 |---|---|
-| [Encore.Audio](https://www.nuget.org/packages/Encore.Audio) | The engine. It depends on nothing but .NET itself: no packages, no native libraries, no unsafe code. It never opens a device; the host pulls samples from `AudioMixer.Render`. |
-| [Encore.Audio.Sdl](https://www.nuget.org/packages/Encore.Audio.Sdl) | Optional: `SdlAudioOutput` plays the mixer through SDL3's default playback device. The only package with a dependency (the SDL3 binding). |
+| [Paradise.Encore](https://www.nuget.org/packages/Paradise.Encore) | The engine (assembly and namespace `Encore.Audio`). It depends on nothing but .NET itself: no packages, no native libraries, no unsafe code. It never opens a device; the host pulls samples from `AudioMixer.Render`. |
+| [Paradise.Encore.Sdl](https://www.nuget.org/packages/Paradise.Encore.Sdl) | Optional (assembly and namespace `Encore.Audio.Sdl`): `SdlAudioOutput` plays the mixer through SDL3's default playback device. The only package with a dependency (the SDL3 binding). |
 
 ```sh
-dotnet add package Encore.Audio
-dotnet add package Encore.Audio.Sdl   # only for the SDL3 device output
+dotnet add package Paradise.Encore
+dotnet add package Paradise.Encore.Sdl   # only for the SDL3 device output
 ```
 
 ## What is here
@@ -146,7 +146,7 @@ through the dummy audio driver.
 ## Releasing
 
 Push a tag `vX.Y.Z` (or `vX.Y.Z-beta.1`), or run the **Publish NuGet packages** workflow by hand with a version.
-It runs the tests, packs `Encore.Audio` and `Encore.Audio.Sdl` at that version, checks them (the core has no
+It runs the tests, packs `Paradise.Encore` and `Paradise.Encore.Sdl` at that version, checks them (the core has no
 dependencies, the SDL package depends on the core at the same version, a consumer of both builds), and pushes both
 to nuget.org with their symbol packages.
 

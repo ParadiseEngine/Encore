@@ -1,6 +1,6 @@
 name: Publish NuGet packages
 
-# Publishes Encore.Audio (the standalone core) and Encore.Audio.Sdl (the optional SDL3 output) as separate
+# Publishes Paradise.Encore (the standalone core) and Paradise.Encore.Sdl (the optional SDL3 output) as separate
 # packages at one version: on a tag vX.Y.Z, or by hand with a version.
 #
 # Uses nuget.org trusted publishing (OIDC): no API key is stored. On nuget.org, add a trusted publishing policy
