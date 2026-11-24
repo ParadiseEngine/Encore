@@ -4,6 +4,8 @@ A .NET audio engine for games (`Encore.Audio`): a 48 kHz stereo mixer for a tabl
 synthesizer that plays songs from several formats, and the device output a host opens to hear them. .NET 11,
 NativeAOT-compatible. MIT licensed (see `LICENSE`).
 
+https://github.com/user-attachments/assets/5daa39d0-70ae-4d3e-9738-c28a4a6edb19
+
 Two NuGet packages:
 
 | Package | What it is |
