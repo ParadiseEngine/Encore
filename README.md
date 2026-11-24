@@ -4,8 +4,6 @@ A .NET audio engine for games (`Encore.Audio`): a 48 kHz stereo mixer for a tabl
 synthesizer that plays songs from several formats, and the device output a host opens to hear them. .NET 11,
 NativeAOT-compatible. MIT licensed (see `LICENSE`).
 
-https://github.com/user-attachments/assets/5daa39d0-70ae-4d3e-9738-c28a4a6edb19
-
 Two NuGet packages:
 
 | Package | What it is |
@@ -35,7 +33,9 @@ dotnet add package Paradise.Encore.Sdl   # only for the SDL3 device output
 
 ## Music
 
-**[▶ Listen: Afro-Funk Market Loop](docs/audio/afro-funk-market-loop.mp3)**: the first 24 seconds of
+https://github.com/user-attachments/assets/5daa39d0-70ae-4d3e-9738-c28a4a6edb19
+
+the first 24 seconds of
 `assets/audio/scores/themes/funk-opus55-b/75-afro-funk-market-loop.song.json`, rendered offline by
 `MusicPlayer` (with a two-second fade-out added) and encoded as a 128 kbit/s MP3.
 
